@@ -22,7 +22,7 @@ extendPiston::extendPiston() {
 
 // Called just before this Command runs the first time
 void extendPiston::Initialize() {
-	
+	Robot::clamp->piston->Set(true);
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -37,7 +37,7 @@ bool extendPiston::IsFinished() {
 
 // Called once after isFinished returns true
 void extendPiston::End() {
-	
+	Robot::clamp->piston->Set(false);
 }
 
 // Called when another command which requires one or more of the same

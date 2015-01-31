@@ -33,16 +33,16 @@ void RobotMap::init() {
 	LiveWindow* lw = LiveWindow::GetInstance();
 
 	driveTrainLeftFront = new Talon(4);
-	lw->AddActuator("DriveTrain", "LeftFront", (Talon*) driveTrainLeftFront);
+	lw->AddActuator("driveTrain", "LeftFront", (Talon*) driveTrainLeftFront);
 	
 	driveTrainLeftRear = new Talon(2);
-	lw->AddActuator("DriveTrain", "LeftRear", (Talon*) driveTrainLeftRear);
+	lw->AddActuator("driveTrain", "LeftRear", (Talon*) driveTrainLeftRear);
 	
 	driveTrainRightFront = new Talon(6);
-	lw->AddActuator("DriveTrain", "RightFront", (Talon*) driveTrainRightFront);
+	lw->AddActuator("driveTrain", "RightFront", (Talon*) driveTrainRightFront);
 	
 	driveTrainRightRear = new Talon(3);
-	lw->AddActuator("DriveTrain", "RightRear", (Talon*) driveTrainRightRear);
+	lw->AddActuator("driveTrain", "RightRear", (Talon*) driveTrainRightRear);
 	
 	driveTrainMecanum = new RobotDrive(driveTrainLeftFront, driveTrainLeftRear,
               driveTrainRightFront, driveTrainRightRear);
@@ -55,10 +55,10 @@ void RobotMap::init() {
         driveTrainMecanum->SetInvertedMotor(RobotDrive::kFrontRightMotor, true);
         driveTrainMecanum->SetInvertedMotor(RobotDrive::kRearRightMotor, true);
 	driveTrainGyro = new Gyro(0);
-	lw->AddSensor("DriveTrain", "Gyro ", driveTrainGyro);
+	lw->AddSensor("driveTrain", "Gyro ", driveTrainGyro);
 	driveTrainGyro->SetSensitivity(0.007);
 	driveTrainDistanceMeasure = new Encoder(2, 3, false, Encoder::k4X);
-	lw->AddSensor("DriveTrain", "DistanceMeasure", driveTrainDistanceMeasure);
+	lw->AddSensor("driveTrain", "DistanceMeasure", driveTrainDistanceMeasure);
 	driveTrainDistanceMeasure->SetDistancePerPulse(1.0);
         driveTrainDistanceMeasure->SetPIDSourceParameter(Encoder::kRate);
 	clamppiston = new Solenoid(0, 0);

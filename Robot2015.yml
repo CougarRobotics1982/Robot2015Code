@@ -78,13 +78,13 @@ Children:
           name: Right Rear Motor
           type: PIDOutput
           validators: [RobotDrive4, ChildDropdownSelected]
-          value: DriveTrain RightRear
+          value: driveTrain RightRear
         Right Front Motor: !!robotbuilder.data.properties.ChildSelectionProperty
           default: 2
           name: Right Front Motor
           type: PIDOutput
           validators: [RobotDrive4, ChildDropdownSelected]
-          value: DriveTrain RightFront
+          value: driveTrain RightFront
         Maximum Output: !!robotbuilder.data.properties.DoubleProperty {default: 1,
           name: Maximum Output, validators: null, value: 1.0}
         Left Front Motor Inverted: !!robotbuilder.data.properties.BooleanProperty {
@@ -96,7 +96,7 @@ Children:
           name: Left Rear Motor
           type: PIDOutput
           validators: [RobotDrive4, ChildDropdownSelected]
-          value: DriveTrain LeftRear
+          value: driveTrain LeftRear
         Right Rear Motor Inverted: !!robotbuilder.data.properties.BooleanProperty {
           default: false, name: Right Rear Motor Inverted, validators: null, value: true}
         Safety Expiration Time: !!robotbuilder.data.properties.DoubleProperty {default: 0.1,
@@ -110,7 +110,7 @@ Children:
           name: Left Front Motor
           type: PIDOutput
           validators: [RobotDrive4, ChildDropdownSelected]
-          value: DriveTrain LeftFront
+          value: driveTrain LeftFront
       Base: Robot Drive 4
       Name: Mecanum
     - Children: []
@@ -165,7 +165,7 @@ Children:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Default Command, type: Command, validators: null, value: None}
     Base: Subsystem
-    Name: DriveTrain
+    Name: driveTrain
   - Children:
     - Children: []
       Properties:
