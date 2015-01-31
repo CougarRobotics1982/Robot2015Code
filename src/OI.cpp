@@ -31,7 +31,7 @@ OI::OI() {
 	xbox = new Joystick(0);
 	
 	driveEnable = new JoystickButton(xbox, 11);
-	driveEnable->WhileHeld(new enableDrive());
+	driveEnable->WhenPressed(new enableDrive());
 	pistonExtend = new JoystickButton(xbox, 1);
 	pistonExtend->WhileHeld(new extendPiston());
 	fourthLevel = new JoystickButton(xbox, 8);
