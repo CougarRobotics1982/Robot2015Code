@@ -43,7 +43,7 @@ void Clamp::ClampOff(){
 	piston->Set(piston->kReverse); //moves clamp to open position to put down totes
 }
 void Clamp::ToggleClamp(){
-	if(piston->Get() == piston->kReverse)//sees what position the clamp is in the sets in the opposite
+	if(piston->Get() == piston->kReverse || piston->Get() == piston->kOff)//sees what position the clamp is in the sets in the opposite
 		piston->Set(piston->kForward);
 	else
 		piston->Set(piston->kReverse);

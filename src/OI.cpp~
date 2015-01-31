@@ -29,14 +29,14 @@ OI::OI() {
 
 	xbox = new Joystick(0);
 	
-	4FourthLevel = new JoystickButton(xbox, 8);
-	4FourthLevel->WhenPressed(new lFourthToteLevel());
-	3ThirdLevel = new JoystickButton(xbox, 7);
-	3ThirdLevel->WhenPressed(new lThirdToteLevel());
-	2SecondLevel = new JoystickButton(xbox, 9);
-	2SecondLevel->WhenPressed(new lSecondToteLevel());
-	1FirstLevel = new JoystickButton(xbox, 10);
-	1FirstLevel->WhenPressed(new lFirstToteLevel());
+	fourthLevel = new JoystickButton(xbox, 8);
+	fourthLevel->WhenPressed(new lFourthToteLevel());
+	thirdLevel = new JoystickButton(xbox, 7);
+	thirdLevel->WhenPressed(new lThirdToteLevel());
+	secondLevel = new JoystickButton(xbox, 9);
+	secondLevel->WhenPressed(new lSecondToteLevel());
+	firstLevel = new JoystickButton(xbox, 10);
+	firstLevel->WhenPressed(new lFirstToteLevel());
      
 
         // SmartDashboard Buttons
