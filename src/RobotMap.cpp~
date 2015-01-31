@@ -61,7 +61,7 @@ void RobotMap::init() {
 	lw->AddSensor("driveTrain", "DistanceMeasure", driveTrainDistanceMeasure);
 	driveTrainDistanceMeasure->SetDistancePerPulse(1.0);
         driveTrainDistanceMeasure->SetPIDSourceParameter(Encoder::kRate);
-	clamppiston = new Solenoid(0, 0);
+	clamppiston = new Solenoid(3, 0);
 	lw->AddActuator("Clamp", "piston", clamppiston);
 	
 	clampCompressor1 = new Compressor(0);

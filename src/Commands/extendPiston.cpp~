@@ -27,12 +27,16 @@ void extendPiston::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void extendPiston::Execute() {
-	
+	printf("hey Get: %i\n",(int)Robot::clamp->piston->Get());
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool extendPiston::IsFinished() {
-	return false;
+	Joystick* js= Robot::oi->getxbox();
+	if(js->GetRawButton(1))
+		return true;
+	else
+		return false;
 }
 
 // Called once after isFinished returns true
