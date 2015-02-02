@@ -464,6 +464,30 @@ Children:
           value: whenPressed
       Base: Joystick Button
       Name: LiftMo
+    - Children: []
+      Properties:
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: xbox}
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id010
+          default: '1'
+          name: Button
+          validators: null
+          value: '2'
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id011
+          value: PickUpTote
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id012
+          default: whileHeld
+          name: When to Run
+          validators: null
+          value: whenPressed
+      Base: Joystick Button
+      Name: PickUp
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
         choices: ['0', '1', '2', '3', '4', '5']

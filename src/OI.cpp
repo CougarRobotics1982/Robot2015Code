@@ -34,6 +34,8 @@ OI::OI() {
 
 	xbox = new Joystick(0);
 	
+	pickUp = new JoystickButton(xbox, 2);
+	pickUp->WhenPressed(new PickUpTote());
 	liftMo = new JoystickButton(xbox, 5);
 	liftMo->WhenPressed(new MoveLift());
 	driveEnable = new JoystickButton(xbox, 11);

@@ -30,7 +30,9 @@ void MoveLift::Execute() {
 	Joystick* js =Robot::oi->getxbox();
 	float distance = Robot::liftR->quadratureEncoder->GetDistance();
 	int count = Robot::liftR->quadratureEncoder->Get();
-	Robot::liftR->lifter->Set(js->GetThrottle());
+	float x2;
+	float x = x-js->GetThrottle();
+	Robot::liftR->lifter->Set(x);
 	printf("Count: %i Distance: %f\n", count, distance);
 	
 }

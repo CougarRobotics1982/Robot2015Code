@@ -45,6 +45,7 @@ bool PickUpTote::IsFinished() {
 
 // Called once after isFinished returns true
 void PickUpTote::End() {
+	printf("END Pick up tote\n");
 	Robot::clamp->piston->Set(false);
 	low->Start();
 }

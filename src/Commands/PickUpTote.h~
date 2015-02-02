@@ -30,7 +30,7 @@ public:
 	virtual void End();
 	virtual void Interrupted();
 private:
-	Command * low;
+	Command*  low;
 };
 
 #endif

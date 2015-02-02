@@ -27,11 +27,12 @@ void MoveLift::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void MoveLift::Execute() {
+	Robot::liftR->Disable();
 	Joystick* js =Robot::oi->getxbox();
 	float distance = Robot::liftR->quadratureEncoder->GetDistance();
 	int count = Robot::liftR->quadratureEncoder->Get();
-	float x2;
-	float x = x-js->GetThrottle();
+	float x;
+	x = js->GetThrottle();
 	Robot::liftR->lifter->Set(x);
 	printf("Count: %i Distance: %f\n", count, distance);
 	
