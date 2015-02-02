@@ -74,6 +74,7 @@ bool DriveTrain::GoForward(float setFeet){		  	   //SLANT COMMENTS AGAIN
 void DriveTrain::MecanumDrive(Joystick* js){
 	float x = js->GetX();
 	float y = js->GetY();
-	float twist = js->GetZ();
+	float twist = js->GetZ() * .45;
+
 	mecanum->MecanumDrive_Cartesian(x,y,twist);
 }
