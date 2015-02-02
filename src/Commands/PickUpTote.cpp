@@ -33,6 +33,7 @@ void PickUpTote::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void PickUpTote::Execute() {
+	printf("Running: %f\n", Robot::liftR->PIDGet());
 }
 
 // Make this return true when this Command no longer needs to run execute()

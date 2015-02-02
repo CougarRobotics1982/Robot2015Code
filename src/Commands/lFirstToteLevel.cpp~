@@ -32,7 +32,7 @@ void lFirstToteLevel::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void lFirstToteLevel::Execute() {
-	printf("Distance %f Pid: %f \n",Robot::liftR->quadratureEncoder->GetDistance(),Robot::liftR->PIDGet());
+	printf("Distance %f Pid: %f Speed: %f\n",Robot::liftR->quadratureEncoder->GetDistance(),Robot::liftR->PIDGet(),Robot::liftR->lifter->Get());
 }
 
 // Make this return true when this Command no longer needs to run execute()

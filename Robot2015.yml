@@ -251,7 +251,7 @@ Children:
       Name: QuadratureEncoder
     Properties:
       Limit Output: !!robotbuilder.data.properties.BooleanProperty {default: false,
-        name: Limit Output, validators: null, value: false}
+        name: Limit Output, validators: null, value: true}
       D: !!robotbuilder.data.properties.DoubleProperty {default: 0, name: D, validators: null,
         value: 0.0}
       Continuous: !!robotbuilder.data.properties.BooleanProperty {default: false,
@@ -267,7 +267,7 @@ Children:
       Limit Input: !!robotbuilder.data.properties.BooleanProperty {default: false,
         name: Limit Input, validators: null, value: false}
       Minimum Output: !!robotbuilder.data.properties.DoubleProperty {default: -1,
-        name: Minimum Output, validators: null, value: -0.4}
+        name: Minimum Output, validators: null, value: -0.25}
       P: !!robotbuilder.data.properties.DoubleProperty {default: 1, name: P, validators: null,
         value: 0.05}
       Input: !!robotbuilder.data.properties.ChildSelectionProperty
