@@ -22,7 +22,7 @@ extendPiston::extendPiston() {
 
 // Called just before this Command runs the first time
 void extendPiston::Initialize() {
-	Robot::clamp->piston->Set(true);
+		Robot::clamp->piston->Set(true); //makes the clamp open then once the button is released it closes
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -34,14 +34,14 @@ void extendPiston::Execute() {
 bool extendPiston::IsFinished() {
 	Joystick* js= Robot::oi->getxbox();
 	if(js->GetRawButton(1))
-		return true;
+		return false;	// if the button is still pressed don't end command
 	else
-		return false;
+		return true;	//if button is released then end command
 }
 
 // Called once after isFinished returns true
 void extendPiston::End() {
-	Robot::clamp->piston->Set(false);
+	Robot::clamp->piston->Set(false); //close clamp
 }
 
 // Called when another command which requires one or more of the same

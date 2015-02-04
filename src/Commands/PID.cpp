@@ -27,10 +27,10 @@ void PID::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void PID::Execute() {
-	Joystick* js = Robot::oi->getxbox();
+/*	Joystick* js = Robot::oi->getxbox();
 	Robot::liftR->lifter->Set(js->GetX());
 	printf("PID: %f Distance %f", Robot::liftR->quadratureEncoder->PIDGet(),Robot::liftR->quadratureEncoder->GetDistance());
-}
+*/}
 
 // Make this return true when this Command no longer needs to run execute()
 bool PID::IsFinished() {

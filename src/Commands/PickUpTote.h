@@ -31,6 +31,7 @@ public:
 	virtual void Interrupted();
 private:
 	Command*  low;
+	int endCount;
 };
 
 #endif

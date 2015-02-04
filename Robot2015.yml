@@ -261,7 +261,7 @@ Children:
       Tolerance: !!robotbuilder.data.properties.DoubleProperty {default: 0.2, name: Tolerance,
         validators: null, value: 0.2}
       I: !!robotbuilder.data.properties.DoubleProperty {default: 0, name: I, validators: null,
-        value: 0.0}
+        value: 0.001}
       Minimum Input: !!robotbuilder.data.properties.DoubleProperty {default: 0, name: Minimum Input,
         validators: null, value: 0.0}
       Limit Input: !!robotbuilder.data.properties.BooleanProperty {default: false,
@@ -269,7 +269,7 @@ Children:
       Minimum Output: !!robotbuilder.data.properties.DoubleProperty {default: -1,
         name: Minimum Output, validators: null, value: -0.25}
       P: !!robotbuilder.data.properties.DoubleProperty {default: 1, name: P, validators: null,
-        value: 0.05}
+        value: 0.07}
       Input: !!robotbuilder.data.properties.ChildSelectionProperty
         default: 0
         name: Input
@@ -488,6 +488,30 @@ Children:
           value: whenPressed
       Base: Joystick Button
       Name: PickUp
+    - Children: []
+      Properties:
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: xbox}
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id010
+          default: '1'
+          name: Button
+          validators: null
+          value: '12'
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id011
+          value: ResetEncoderLift
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id012
+          default: whileHeld
+          name: When to Run
+          validators: null
+          value: whenPressed
+      Base: Joystick Button
+      Name: ResetEncoder
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
         choices: ['0', '1', '2', '3', '4', '5']
@@ -625,6 +649,14 @@ Children:
         validators: null, value: 0.0}
     Base: Setpoint Command
     Name: lPIDFloor
+  - Children: []
+    Properties:
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: None}
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+    Base: Command
+    Name: ResetEncoderLift
   Properties: {}
   Base: Commands
   Name: Commands
