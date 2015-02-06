@@ -25,6 +25,7 @@ AutonomousCommand::AutonomousCommand() {
 
 // Called just before this Command runs the first time
 void AutonomousCommand::Initialize() {
+	RobotMap::clamppiston->Set(false);
 	counter = 0;
 	
 }
@@ -34,50 +35,50 @@ void AutonomousCommand::Execute() {
 	//CLAMP THE TOTE
 	if(counter <= SEC*1)
 	{
-		RobotMap::clamppiston->Set(true);
+		//RobotMap::clamppiston->Set(false);
 	}
 
 	//MOVE TOTE UP 7 INCHES
-	else if(counter <= SEC*1.5)
+	else if(counter <= SEC*3)
 	{
 		(new lFirstToteLevel)->Start();
 	}
 
 	//MOVE BACK
-	else if(counter <= SEC*2)
+	else if(counter <= SEC*4)
 	{
-		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0.0,-0.5,0.0);
+		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0.0,0.25,0.0);
 	}
 
 	//STOP AND TURN 90 DEGREES
-	else if(counter <= SEC*2.5)
+	else if(counter <= SEC*5)
 	{
-		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0.0,0,.5,90.0);
+		Robot::driveTrain->TurnTo(-90);
 	}
 
 	//MOVE FORWARD
-	else if(counter <= SEC*5)
+	else if(counter <= SEC*9)
 	{
-		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0.0,0.8,0.0);
+		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0.0,-0.25,0.0);
 	}
 
 	//STOP AND ROTATE ANOTHER 90 DEGREES
-	else if(counter <= SEC*8)
+	else if(counter <= SEC*12)
 	{
-		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0.0,0.0,0.5,90);
+		Robot::driveTrain->TurnTo(-180);
 	}
 
 	//DROP TOTE
-	else if(counter <= SEC*9.5)
+	else if(counter <= SEC*15)
 	{
 		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0.0,0.0,0.0);
-		RobotMap::clamppiston->Set(false);
+		RobotMap::clamppiston->Set(true);
 	}
 
 	//BACK UP
-	else if(counter <= SEC*10)
+	else if(counter <= SEC*18)
 	{
-		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0.0,0.5,0.0);
+		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0.0,0.25,0.0);
 	}
 
 	//STOP
@@ -85,7 +86,7 @@ void AutonomousCommand::Execute() {
 	{
 		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0.0,0.0,0.0);
 	}
-	
+
 	counter ++;
 }
 

@@ -61,6 +61,7 @@ void Robot::AutonomousInit() {
 }
 
 void Robot::AutonomousPeriodic() {
+	printf("Angle %f\n", Robot::driveTrain->gyro->GetAngle());
 	Scheduler::GetInstance()->Run();
 }
 
@@ -75,7 +76,7 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
-	printf("Distance: %f GET: %i\n", Robot::liftR->PIDGet(), (int)Robot::clamp->piston->Get());
+	printf("Distance: %f angle: %f %i\n", Robot::liftR->PIDGet(), Robot::driveTrain->gyro->GetAngle(), (int)Robot::liftR->homeSwitch->Get());
 	Scheduler::GetInstance()->Run();
 }
 

@@ -42,7 +42,7 @@ void PickUpTote::Execute() {
 	{
 		if(endCount == 0)
 		{
-			Robot::clamp->piston->Set(false); // Release the clamp so that the tote it is holding drops on the stack
+			Robot::clamp->piston->Set(true); // Release the clamp so that the tote it is holding drops on the stack
 			Robot::liftR->SetSetpoint(0.0);// move to floor level so it picks up the next tote
 			endCount++; //adds to end count so that it won't run this again
 		}
@@ -69,7 +69,7 @@ bool PickUpTote::IsFinished() {
 
 // Called once after isFinished returns true
 void PickUpTote::End() {
-	Robot::clamp->piston->Set(true);
+	Robot::clamp->piston->Set(false);
 	printf("End Tote Pick Up");
 	low->Start();	//starts the floor command to pick up next tote
 }
