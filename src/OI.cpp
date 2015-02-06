@@ -35,6 +35,8 @@ OI::OI() {
 
 	xbox = new Joystick(0);
 	
+	fLOORPID = new JoystickButton(xbox, 6);
+	fLOORPID->WhenPressed(new lPIDFloor());
 	resetEncoder = new JoystickButton(xbox, 12);
 	resetEncoder->WhenPressed(new ResetEncoderLift());
 	pickUp = new JoystickButton(xbox, 2);

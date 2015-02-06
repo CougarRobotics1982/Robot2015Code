@@ -75,7 +75,7 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
-	printf("Distance: %f\n", Robot::liftR->PIDGet());
+	printf("Distance: %f GET: %i\n", Robot::liftR->PIDGet(), (int)Robot::clamp->piston->Get());
 	Scheduler::GetInstance()->Run();
 }
 
