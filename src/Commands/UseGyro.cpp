@@ -28,7 +28,7 @@ void UseGyro::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void UseGyro::Execute() {
-	onTarget = Robot::driveTrain->TurnTo(-90.0);
+	Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,-.25,0,Robot::driveTrain->gyro->GetAngle());
 	printf("Angle %f\n", Robot::driveTrain->gyro->GetAngle());
 	
 }

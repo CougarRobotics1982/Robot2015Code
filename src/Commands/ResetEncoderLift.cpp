@@ -27,7 +27,7 @@ void ResetEncoderLift::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ResetEncoderLift::Execute() {
-	Robot::liftR->lifter->Set(-.2);
+	Robot::liftR->lifter->Set(-.1);
 	
 }
 

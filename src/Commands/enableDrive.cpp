@@ -26,7 +26,7 @@ void enableDrive::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void enableDrive::Execute() {
-	Joystick* coolController = Robot::oi->getCoPilot();
+	Joystick* coolController = Robot::oi->getxbox();
 	Robot::driveTrain->MecanumDrive(coolController);	//mecanum drive
 }
 
