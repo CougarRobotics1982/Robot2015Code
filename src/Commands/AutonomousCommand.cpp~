@@ -37,15 +37,22 @@ void AutonomousCommand::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void AutonomousCommand::Execute() {
-
-	//CLAMP THE TOTE
-	if(turnedCounter == 0 && counter <= SEC*1)
+	if(turnedCounter == 0 && counter <= 40)
 	{
-		RobotMap::clamppiston->Set(true);
+		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,-.2,0);
+	}
+	//CLAMP THE TOTE
+	else if(turnedCounter == 0 && counter <= 60)
+	{
+		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,0.0,0);
+	}
+	else if(turnedCounter == 0 && counter <=90)
+	{
+			RobotMap::clamppiston->Set(true);
 	}
 
 	//MOVE TOTE UP 7 INCHES for 2 seconds after the tote is clamped
-	else if(turnedCounter == 0 && counter <= SEC*2)
+	else if(turnedCounter == 0 && counter <= SEC*3)
 	{
 		(new lFirstToteLevel)->Start();
 	}
@@ -53,20 +60,21 @@ void AutonomousCommand::Execute() {
 	//MOVE BACK for 1 second after the tote moves up
 	else if(turnedCounter == 0 && counter <= SEC*4)
 	{
-		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0.0,0.25,0.0);
+		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0.0,0.2,0.0);
 	}
 
-	else if(turnedCounter == 0 && counter <= SEC*5)
+	else if(turnedCounter == 0 && counter <= 240)
 	{
-		(new lPIDFloor)->Start();
+		Robot::liftR->SetSetpoint(0);
+		Robot::liftR->Enable();
 	}
-	else if(turnedCounter == 0 && counter <= SEC*7)
+	else if(turnedCounter == 0 && counter <= 270)
 	{
 		RobotMap::clamppiston->Set(false);
 	}
-	else if(turnedCounter == 0 && counter <= SEC*8)
+	else if(turnedCounter == 0 && counter <= SEC*7)
 	{
-		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0.0,-.25,0.0);
+		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0.0,.15,0.0);
 	}
 	/*//STOP AND TURN 90 DEGREES
 	else if(!turned)
