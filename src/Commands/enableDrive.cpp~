@@ -27,8 +27,7 @@ void enableDrive::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void enableDrive::Execute() {
 	Joystick* coolController = Robot::oi->getxbox();
-	Robot::driveTrain->MecanumDrive(coolController);
-	printf("X: %f Y: %f Z: %f\n",coolController->GetX(),coolController->GetY(),coolController->GetZ());
+	Robot::driveTrain->MecanumDrive(coolController);	//mecanum drive
 }
 
 // Make this return true when this Command no longer needs to run execute()

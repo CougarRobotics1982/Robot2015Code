@@ -9,8 +9,8 @@
 // it from being updated in the future.
 
 
-#ifndef AUTONOMOUS_COMMAND_H
-#define AUTONOMOUS_COMMAND_H
+#ifndef TRASHCANLEVEL_H
+#define TRASHCANLEVEL_H
 
 
 #include "Commands/Subsystem.h"
@@ -21,16 +21,14 @@
  *
  * @author ExampleAuthor
  */
-class AutonomousCommand: public Command {
+class TrashCanLevel: public Command {
 public:
-	AutonomousCommand();
+	TrashCanLevel();
 	virtual void Initialize();
 	virtual void Execute();
 	virtual bool IsFinished();
 	virtual void End();
 	virtual void Interrupted();
-	int counter;
-
 };
 
 #endif

@@ -9,8 +9,8 @@
 // it from being updated in the future.
 
 
-#ifndef AUTONOMOUS_COMMAND_H
-#define AUTONOMOUS_COMMAND_H
+#ifndef RESETENCODERLIFT_H
+#define RESETENCODERLIFT_H
 
 
 #include "Commands/Subsystem.h"
@@ -21,16 +21,14 @@
  *
  * @author ExampleAuthor
  */
-class AutonomousCommand: public Command {
+class ResetEncoderLift: public Command {
 public:
-	AutonomousCommand();
+	ResetEncoderLift();
 	virtual void Initialize();
 	virtual void Execute();
 	virtual bool IsFinished();
 	virtual void End();
 	virtual void Interrupted();
-	int counter;
-
 };
 
 #endif

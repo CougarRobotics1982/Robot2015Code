@@ -47,7 +47,7 @@ void DriveTrain::InitDefaultCommand() {
 // here. Call these from Commands.
 bool DriveTrain::TurnTo(float degrees){		  		   //Slant comments are cool
 	float angle = gyro->GetAngle();			 		  //Gets the angle of the gyro after the gyro was reset up in the constructor of subsystem
-	float error = (degrees - angle)/100;			 //calculates the difference between set angle and current angle
+	float error = (degrees - angle)/200;			 //calculates the difference between set angle and current angle
 	bool finished = false;				   			//
 	if(error > 1)						 		   //makes it so motors don't break by inputing a float higher than the motors can take
 		error = 1;						 		  //
@@ -72,9 +72,9 @@ bool DriveTrain::GoForward(float setFeet){		  	   //SLANT COMMENTS AGAIN
 	return finished;					    //
 }
 void DriveTrain::MecanumDrive(Joystick* js){
-	float x = js->GetX() * .5;
-	float y = js->GetY() * .5;
-	float twist = js->GetZ() * .45;
 
+	float x = js->GetX() * .35;
+	float y = js->GetY() * .35;
+	float twist = js->GetZ() * .25;
 	mecanum->MecanumDrive_Cartesian(x,y,twist);
 }

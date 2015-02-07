@@ -32,8 +32,8 @@ void MoveLift::Execute() {
 	float distance = Robot::liftR->quadratureEncoder->GetDistance();
 	int count = Robot::liftR->quadratureEncoder->Get();
 	float x;
-	x = js->GetThrottle();
-	Robot::liftR->lifter->Set(x);
+	x = js->GetThrottle();	//uses the slider to manually move the lift no PID
+	Robot::liftR->lifter->Set(-x);
 	printf("Count: %i Distance: %f\n", count, distance);
 	
 }
