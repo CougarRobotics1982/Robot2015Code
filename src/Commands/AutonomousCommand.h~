@@ -30,6 +30,8 @@ public:
 	virtual void End();
 	virtual void Interrupted();
 	int counter;
+	bool turned;
+	int turnedCounter;
 
 };
 

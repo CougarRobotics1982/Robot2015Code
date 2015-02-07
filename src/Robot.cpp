@@ -70,13 +70,14 @@ void Robot::TeleopInit() {
 	// teleop starts running. If you want the autonomous to 
 	// continue until interrupted by another command, remove
 	// these lines or comment it out.
-	startdriving->Start();// start the enableDrive command to drive right when teleopo enables
+	//startdriving->Start();// start the enableDrive command to drive right when teleopo enables
 	if (autonomousCommand != NULL)
 		autonomousCommand->Cancel();
 }
 
 void Robot::TeleopPeriodic() {
-	printf("Distance: %f angle: %f %i\n", Robot::liftR->PIDGet(), Robot::driveTrain->gyro->GetAngle(), (int)Robot::liftR->homeSwitch->Get());
+	printf("Angle: %f\n",Robot::driveTrain->gyro->GetAngle());
+	//printf("Distance: %f angle: %f %i\n", Robot::liftR->PIDGet(), Robot::driveTrain->gyro->GetAngle(), (int)Robot::liftR->homeSwitch->Get());
 	Scheduler::GetInstance()->Run();
 }
 

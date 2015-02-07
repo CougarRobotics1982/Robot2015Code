@@ -47,14 +47,20 @@ void DriveTrain::InitDefaultCommand() {
 // here. Call these from Commands.
 bool DriveTrain::TurnTo(float degrees){		  		   //Slant comments are cool
 	float angle = gyro->GetAngle();			 		  //Gets the angle of the gyro after the gyro was reset up in the constructor of subsystem
-	float error = (degrees - angle)/100;			 //calculates the difference between set angle and current angle
+	float error = (degrees - angle);
+	float speed = 0;								//calculates the difference between set angle and current angle
 	bool finished = false;				   			//
-	if(error > 1)						 		   //makes it so motors don't break by inputing a float higher than the motors can take
-		error = 1;						 		  //
+	if(error > 30)						 		   //makes it so motors don't break by inputing a float higher than the motors can take
+		speed = .25;						 		  //
+	else if(error < -30)							 //
+		speed = -.25;
+	else if(error > 1)						 		   //makes it so motors don't break by inputing a float higher than the motors can take
+		speed = .1;						 		  //
 	else if(error < -1)							 //
-		error = -1;							    //
-	mecanum->MecanumDrive_Cartesian(0,0,error);//only so the robot turns not move forward
-	if(error < .5 && error > .5)   			  //if error is within a reasonable range say basically it's close enough
+		speed = -.1;
+	printf("Speed %f\n", speed);				//
+	mecanum->MecanumDrive_Cartesian(0,0,speed);//only so the robot turns not move forward
+	if(error < 1 && error > -1)   			  //if error is within a reasonable range say basically it's close enough
 		finished = true;
 	return finished;
 }

@@ -9,8 +9,8 @@
 // it from being updated in the future.
 
 
-#ifndef AUTONOMOUS_COMMAND_H
-#define AUTONOMOUS_COMMAND_H
+#ifndef RETURNGYRO_H
+#define RETURNGYRO_H
 
 
 #include "Commands/Subsystem.h"
@@ -21,18 +21,15 @@
  *
  * @author ExampleAuthor
  */
-class AutonomousCommand: public Command {
+class ReturnGyro: public Command {
 public:
-	AutonomousCommand();
+	ReturnGyro();
 	virtual void Initialize();
 	virtual void Execute();
 	virtual bool IsFinished();
 	virtual void End();
 	virtual void Interrupted();
-	int counter;
-	bool turned;
-	int turnedCounter;
-
+	bool onTarget;
 };
 
 #endif

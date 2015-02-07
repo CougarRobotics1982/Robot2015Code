@@ -9,8 +9,8 @@
 // it from being updated in the future.
 
 
-#ifndef AUTONOMOUS_COMMAND_H
-#define AUTONOMOUS_COMMAND_H
+#ifndef MOVEFORWARD_H
+#define MOVEFORWARD_H
 
 
 #include "Commands/Subsystem.h"
@@ -21,18 +21,17 @@
  *
  * @author ExampleAuthor
  */
-class AutonomousCommand: public Command {
+class MoveForward: public Command {
 public:
-	AutonomousCommand();
+	MoveForward();
 	virtual void Initialize();
 	virtual void Execute();
 	virtual bool IsFinished();
 	virtual void End();
 	virtual void Interrupted();
+	float speed;
 	int counter;
-	bool turned;
-	int turnedCounter;
-
+	bool done;
 };
 
 #endif
