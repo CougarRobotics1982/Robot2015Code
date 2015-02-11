@@ -32,6 +32,7 @@ public:
 	int counter;
 	bool turned;
 	int turnedCounter;
+	int testTime;
 
 };
 
