@@ -37,84 +37,75 @@ void AutonomousCommand::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void AutonomousCommand::Execute() {
-	if(turnedCounter == 0 && counter <= 40)
-	{
-		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,-.2,0);
-	}
 	//CLAMP THE TOTE
-	else if(turnedCounter == 0 && counter <= 60)
+	if(turnedCounter == 0 && counter <= 20)
 	{
-		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,0.0,0);
-	}
-	else if(turnedCounter == 0 && counter <=90)
-	{
-			RobotMap::clamppiston->Set(true);
+		RobotMap::clamppiston->Set(true);
 	}
 
-	//MOVE TOTE UP 7 INCHES for 2 seconds after the tote is clamped
-	else if(turnedCounter == 0 && counter <= SEC*3)
+	//move the TOTE to the 1st level
+	else if(turnedCounter == 0 && counter <= 60)
 	{
 		(new lFirstToteLevel)->Start();
 	}
 
-	//MOVE BACK for 1 second after the tote moves up
-	else if(turnedCounter == 0 && counter <= SEC*4)
+	//move the robot back
+	else if(turnedCounter == 0 && counter <=100)
 	{
-		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0.0,0.2,0.0);
+		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,.2,0);
 	}
 
-	else if(turnedCounter == 0 && counter <= 240)
+	//stop and turn the robot
+	else if(turnedCounter == 0 && counter <= 110)
 	{
-		Robot::liftR->SetSetpoint(0);
-		Robot::liftR->Enable();
+		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,0.0,0);
 	}
-	else if(turnedCounter == 0 && counter <= 270)
+	else if(turnedCounter == 0 && turned == false)
+	{
+		turned = Robot::driveTrain->TurnTo(-90);
+	}
+
+	//move the robot forward (towards the autozone)
+	else if(turnedCounter == 1 && counter < 230 && counter > 10)
+	{
+		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,-.3,0);
+	}
+
+	//stop and turn the robot
+	else if(turnedCounter == 1 && counter < 240)
+	{
+		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,0,0);
+	}
+	else if(turnedCounter == 1 && turned == false)
+	{
+		turned = Robot::driveTrain->TurnTo(0);
+	}
+
+	//bring the TOTE down to the floor
+	else if(turnedCounter == 2 && counter < 90 && counter > 10)
+	{
+		(new lPIDFloor)->Start();
+	}
+
+	//drop the TOTE
+	else if(turnedCounter == 2 && counter < 110)
 	{
 		RobotMap::clamppiston->Set(false);
 	}
-	else if(turnedCounter == 0 && counter <= SEC*7)
+
+	//back up out of the way
+	else if(turnedCounter == 2 && counter < 130)
 	{
-		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0.0,.15,0.0);
-	}
-	/*//STOP AND TURN 90 DEGREES
-	else if(!turned)
-	{
-		turned = Robot::driveTrain->TurnTo(-90);
-		//if(turned)
-		//	turnedCounter ++;
-		//counter = 0;
-	}
-	//MOVE FORWARD
-	else if(turnedCounter == 1 && turned == true  && counter <= SEC*3 )
-	{
-		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0.0,-0.1,0.0);
+		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,0.3,0);
 	}
 
-	//STOP AND ROTATE ANOTHER 90 DEGREES
-	else if(turnedCounter == 1 && turned == true && counter <= SEC*3.5)
+	//reset the counter when you turn the robot
+	if(turned == true)
 	{
 		turned = false;
-		Robot::driveTrain->gyro->Reset();
+		turnedCounter ++;
+		counter = 0;
 	}
-
-	//DROP TOTE
-	else if(turnedCounter == 2 && turned == true && counter <= SEC*1)
-	{
-		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0.0,0.0,0.0);
-		RobotMap::clamppiston->Set(true);
-	}
-
-	//BACK UP
-	else if(turnedCounter == 2 && turned == true && counter <= SEC*3)
-	{
-		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0.0,0.1,0.0);
-	}
-
-	//STOP
-	else
-	{
-		Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0.0,0.0,0.0);
-	}*/
 	counter ++;
 }
 
