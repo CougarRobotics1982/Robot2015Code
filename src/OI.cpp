@@ -40,8 +40,6 @@ OI::OI() {
 	resetEncoder->WhenPressed(new ResetEncoderLift());
 	pickUp = new JoystickButton(xbox, 2);
 	pickUp->WhenPressed(new PickUpTote());
-	liftMo = new JoystickButton(xbox, 5);
-	liftMo->WhenPressed(new MoveLift());
 	driveEnable = new JoystickButton(xbox, 11);
 	driveEnable->WhenPressed(new enableDrive());
 	pistonExtend = new JoystickButton(xbox, 1);
@@ -60,6 +58,8 @@ OI::OI() {
 	secondLevel->WhenPressed(new lSecondToteLevel());
 	firstLevel = new JoystickButton(levelController, 3);
 	firstLevel->WhenPressed(new lFirstToteLevel());
+	liftMo = new JoystickButton(levelController, 8);
+	liftMo->WhileHeld(new MoveLift());
      
 
         // SmartDashboard Buttons
