@@ -38,7 +38,10 @@ public:
 	void InitDefaultCommand();
 	bool TurnTo(float degrees);
 	bool GoForward(float setFeet);
+
 	void MecanumDrive(Joystick * js);
+
+
 };
 
 #endif

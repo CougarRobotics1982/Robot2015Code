@@ -40,7 +40,7 @@ void DriveTrain::InitDefaultCommand() {
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
-<<<<<<< HEAD
+
 bool DriveTrain::TurnTo(float degrees){		  		   //Slant comments are cool
 	float angle = gyro->GetAngle();			 		  //Gets the angle of the gyro after the gyro was reset up in the constructor of subsystem
 	float error = (degrees - angle);
@@ -77,51 +77,9 @@ bool DriveTrain::GoForward(float setFeet){		  	   //SLANT COMMENTS AGAIN
 
 void DriveTrain::MecanumDrive(Joystick* js){
 
-	float x = js->GetX() * .1;
-	float y = js->GetY() * .1;
-	float twist = js->GetZ() * .1;
-
-=======
-
-// Put methods for controlling this subsystem
-// here. Call these from Commands.
-bool DriveTrain::TurnTo(float degrees){		  		   //Slant comments are cool
-	float angle = gyro->GetAngle();			 		  //Gets the angle of the gyro after the gyro was reset up in the constructor of subsystem
-	float error = (degrees - angle);
-	float speed = 0;								//calculates the difference between set angle and current angle
-	bool finished = false;				   			//
-	if(error > 30)						 		   //makes it so motors don't break by inputing a float higher than the motors can take
-		speed = .25;						 		  //
-	else if(error < -30)							 //
-		speed = -.25;
-	else if(error > 1)						 		   //makes it so motors don't break by inputing a float higher than the motors can take
-		speed = .1;						 		  //
-	else if(error < -1)							 //
-		speed = -.1;
-	printf("Speed %f\n", speed);				//
-	mecanum->MecanumDrive_Cartesian(0,0,speed);//only so the robot turns not move forward
-	if(error < 1 && error > -1)   			  //if error is within a reasonable range say basically it's close enough
-		finished = true;
-	return finished;
-}
-bool DriveTrain::GoForward(float setFeet){		  	   //SLANT COMMENTS AGAIN
-	float feet = distanceMeasure->GetDistance(); 	  //gets distance robot has driven so far
-	float error = (setFeet - feet)/50;				 //calculates the difference between set angle and current angle
-	bool finished = false;					   		//
-	if(error > 1)							  	   //
-		error = 1;							 	  //makes it so motors don't break by inputing a float higher than the motors can take
-	else if(error<-1)							 //
-		error = -1;								//
-	mecanum->MecanumDrive_Cartesian(0,error,0);//move robot forward based on error
-	if(error < .5 && error > .5)		  	  //
-		finished = true;				     //if error is within a reasonable range say basically it's close enough
-	return finished;					    //
-}
-void DriveTrain::MecanumDrive(Joystick* js){
-
-	float x = js->GetX() * .35;
-	float y = js->GetY() * .35;
+	float x = js->GetX() * .5;
+	float y = js->GetY() * .5;
 	float twist = js->GetZ() * .25;
->>>>>>> parent of 35017c1... Fixed Various Things... Github things...
 	mecanum->MecanumDrive_Cartesian(x,y,twist);
+
 }

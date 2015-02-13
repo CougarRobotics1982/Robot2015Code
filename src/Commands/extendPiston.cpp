@@ -22,22 +22,26 @@ extendPiston::extendPiston() {
 
 // Called just before this Command runs the first time
 void extendPiston::Initialize() {
-	
+	Robot::clamp->piston->Set(true);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void extendPiston::Execute() {
-	
+
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool extendPiston::IsFinished() {
-	return false;
+	Joystick * js = Robot::oi->getlevelController();
+	if(js->GetRawButton(1))
+		return false;
+	else
+		return true;
 }
 
 // Called once after isFinished returns true
 void extendPiston::End() {
-	
+	Robot::clamp->piston->Set(false);
 }
 
 // Called when another command which requires one or more of the same

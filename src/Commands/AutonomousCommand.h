@@ -29,17 +29,12 @@ public:
 	virtual bool IsFinished();
 	virtual void End();
 	virtual void Interrupted();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 52b118a... Good Lookin Autonomous
+
 	int counter;
 	bool turned;
 	int turnedCounter;
 	int testTime;
-
->>>>>>> parent of 52b118a... Good Lookin Autonomous
+	void Autonomous1();
 };
 
 #endif
