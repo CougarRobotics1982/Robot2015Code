@@ -30,25 +30,25 @@ AutonomousCommand::AutonomousCommand() {
 // Called just before this Command runs the first time
 void AutonomousCommand::Initialize() {
 	Robot::driveTrain->gyro->Reset();
-<<<<<<< HEAD
+
 		RobotMap::clamppiston->Set(false);
 		counter = 0;
 		turnedCounter = 0;
 		turned = false;
 		testTime = 0;
-=======
+
 	RobotMap::clamppiston->Set(false);
 	counter = 0;
 	turnedCounter = 0;
 	turned = false;
 	testTime = 0;
->>>>>>> parent of 16a5109... Fixed the extra folder...
+
 }
 
 // Called repeatedly when this Command is scheduled to run
 void AutonomousCommand::Execute() {
 	int autonomousmode = 1;
-<<<<<<< HEAD
+
 		switch(autonomousmode)
 		{
 		case 1:
@@ -61,7 +61,7 @@ void AutonomousCommand::Execute() {
 
 			break;
 		}
-=======
+
 	switch(autonomousmode)
 	{
 	case 1:
@@ -74,7 +74,7 @@ void AutonomousCommand::Execute() {
 
 		break;
 	}
->>>>>>> parent of 16a5109... Fixed the extra folder...
+
 }
 
 // Make this return true when this Command no longer needs to run execute()
