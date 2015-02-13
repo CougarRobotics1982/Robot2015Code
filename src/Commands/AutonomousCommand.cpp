@@ -45,6 +45,7 @@ void AutonomousCommand::Initialize() {
 void AutonomousCommand::Execute() {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int autonomousmode = 1;
 
 		switch(autonomousmode)
@@ -77,6 +78,8 @@ void AutonomousCommand::Execute() {
 	
 >>>>>>> parent of 35017c1... Fixed Various Things... Github things...
 =======
+=======
+>>>>>>> parent of 52b118a... Good Lookin Autonomous
 	switch (turnedCounter)
 	{
 		//if the robot hasn't turned yet
@@ -146,6 +149,22 @@ void AutonomousCommand::Execute() {
 	printf("Time : %i\n", testTime);
 	counter ++;
 >>>>>>> parent of 52b118a... Good Lookin Autonomous
+}
+
+// Make this return true when this Command no longer needs to run execute()
+bool AutonomousCommand::IsFinished() {
+	return false;
+}
+
+// Called once after isFinished returns true
+void AutonomousCommand::End() {
+	
+}
+
+// Called when another command which requires one or more of the same
+// subsystems is scheduled to run
+void AutonomousCommand::Interrupted() {
+
 }
 
 // Make this return true when this Command no longer needs to run execute()

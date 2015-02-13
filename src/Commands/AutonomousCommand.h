@@ -30,7 +30,10 @@ public:
 	virtual void End();
 	virtual void Interrupted();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 52b118a... Good Lookin Autonomous
 	int counter;
 	bool turned;
 	int turnedCounter;
