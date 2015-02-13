@@ -39,6 +39,39 @@ void AutonomousCommand::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void AutonomousCommand::Execute() {
+	int autonomousmode = 1;
+	switch(autonomousmode)
+	{
+	case 1:
+		Autonomous1();
+		break;
+	case 2:
+
+		break;
+	case 3:
+
+		break;
+	}
+}
+
+// Make this return true when this Command no longer needs to run execute()
+bool AutonomousCommand::IsFinished() {
+	return false;
+}
+
+// Called once after isFinished returns true
+void AutonomousCommand::End() {
+	
+}
+
+// Called when another command which requires one or more of the same
+// subsystems is scheduled to run
+void AutonomousCommand::Interrupted() {
+
+}
+
+void AutonomousCommand::Autonomous1()
+{
 	switch (turnedCounter)
 	{
 		//if the robot hasn't turned yet
@@ -107,20 +140,4 @@ void AutonomousCommand::Execute() {
 	testTime = time(NULL);
 	printf("Time : %i\n", testTime);
 	counter ++;
-}
-
-// Make this return true when this Command no longer needs to run execute()
-bool AutonomousCommand::IsFinished() {
-	return false;
-}
-
-// Called once after isFinished returns true
-void AutonomousCommand::End() {
-	
-}
-
-// Called when another command which requires one or more of the same
-// subsystems is scheduled to run
-void AutonomousCommand::Interrupted() {
-
 }
