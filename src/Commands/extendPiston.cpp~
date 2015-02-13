@@ -22,7 +22,7 @@ extendPiston::extendPiston() {
 
 // Called just before this Command runs the first time
 void extendPiston::Initialize() {
-		Robot::clamp->piston->Set(false); //makes the clamp open then once the button is released it closes
+		Robot::clamp->piston->Set(true); //makes the clamp open then once the button is released it closes
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -45,7 +45,7 @@ bool extendPiston::IsFinished() {
 // Called once after isFinished returns true
 void extendPiston::End() {
 	printf("ENDDDDDDDDDDDDDDDDDDDDDDDDD");
-	Robot::clamp->piston->Set(true); //close clamp
+	Robot::clamp->piston->Set(false); //close clamp
 }
 
 // Called when another command which requires one or more of the same

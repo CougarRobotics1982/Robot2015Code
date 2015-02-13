@@ -323,6 +323,7 @@ Children:
           name: Command
           type: Command
 <<<<<<< HEAD
+<<<<<<< HEAD
           validators: &id011 [TypeDropdownSelected]
           value: lFirstToteLevel
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
@@ -333,6 +334,12 @@ Children:
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
           choices: &id014 [whileHeld, whenPressed, whenReleased]
 >>>>>>> parent of 574ef65... Added button for manual/automatic switch
+=======
+          validators: &id011 [TypeDropdownSelected]
+          value: lFirstToteLevel
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: &id012 [whileHeld, whenPressed, whenReleased]
+>>>>>>> parent of 52b118a... Good Lookin Autonomous
           default: whileHeld
           name: When to Run
           validators: null
@@ -523,6 +530,7 @@ Children:
           name: Joystick, validators: null, value: xbox}
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id010
+<<<<<<< HEAD
           default: '1'
           name: Button
           validators: null
@@ -547,6 +555,8 @@ Children:
           name: Joystick, validators: null, value: xbox}
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id010
+=======
+>>>>>>> parent of 52b118a... Good Lookin Autonomous
           default: '1'
           name: Button
           validators: null
@@ -555,10 +565,10 @@ Children:
           default: None
           name: Command
           type: Command
-          validators: *id013
+          validators: *id011
           value: MoveLift
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id014
+          choices: *id012
           default: whileHeld
           name: When to Run
           validators: null
@@ -570,7 +580,7 @@ Children:
         Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
           name: Joystick, validators: null, value: xbox}
         Button: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id012
+          choices: *id010
           default: '1'
           name: Button
           validators: null
