@@ -38,8 +38,12 @@ public:
 	void InitDefaultCommand();
 	bool TurnTo(float degrees);
 	bool GoForward(float setFeet);
+<<<<<<< HEAD
 	void MecanumDrive(Joystick * js);
 
+=======
+	void MecanumDrive(Joystick* js);
+>>>>>>> parent of 35017c1... Fixed Various Things... Github things...
 };
 
 #endif

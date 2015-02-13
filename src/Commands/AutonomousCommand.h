@@ -29,14 +29,6 @@ public:
 	virtual bool IsFinished();
 	virtual void End();
 	virtual void Interrupted();
-	void Autonomous1();
-	void Autonomous2();
-	void Autonomous3();
-	int counter;
-	bool turned;
-	int turnedCounter;
-	int testTime;
-
 };
 
 #endif

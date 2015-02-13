@@ -33,8 +33,6 @@ class LiftR: public PIDSubsystem {
 	double ReturnPIDInput();
 	void UsePIDOutput(double output);
 	void InitDefaultCommand();
-	void SetCircum(float newCircumference);
-	float circumference;
 };
 
 #endif

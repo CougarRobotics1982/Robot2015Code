@@ -21,29 +21,21 @@ ResetEncoderLift::ResetEncoderLift() {
 
 // Called just before this Command runs the first time
 void ResetEncoderLift::Initialize() {
-	printf("EncoderRest");
-	Robot::liftR->Disable();
+	
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ResetEncoderLift::Execute() {
-	Robot::liftR->lifter->Set(-.1);
 	
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool ResetEncoderLift::IsFinished() {
-	//Joystick * js = Robot::oi->getxbox();
-	if(Robot::liftR->homeSwitch->Get())
-		return false;
-	else
-		return true;
+	return false;
 }
 
 // Called once after isFinished returns true
 void ResetEncoderLift::End() {
-	Robot::liftR->lifter->Set(0);
-	Robot::liftR->quadratureEncoder->Reset();
 	
 }
 

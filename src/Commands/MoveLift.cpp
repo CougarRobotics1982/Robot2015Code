@@ -27,14 +27,6 @@ void MoveLift::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void MoveLift::Execute() {
-	Robot::liftR->Disable();
-	Joystick* js =Robot::oi->getxbox();
-	float distance = Robot::liftR->quadratureEncoder->GetDistance();
-	int count = Robot::liftR->quadratureEncoder->Get();
-	float x;
-	x = js->GetThrottle();	//uses the slider to manually move the lift no PID
-	Robot::liftR->lifter->Set(-x);
-	printf("Count: %i Distance: %f\n", count, distance);
 	
 }
 
