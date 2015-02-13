@@ -29,6 +29,9 @@ public:
 	virtual bool IsFinished();
 	virtual void End();
 	virtual void Interrupted();
+private:
+	Command*  low;
+	int endCount;
 };
 
 #endif

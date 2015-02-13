@@ -38,7 +38,11 @@ public:
 	void InitDefaultCommand();
 	bool TurnTo(float degrees);
 	bool GoForward(float setFeet);
+<<<<<<< HEAD
 	void MecanumDrive(Joystick* js);
+=======
+	void MecanumDrive(Joystick * js);
+>>>>>>> parent of 16a5109... Fixed the extra folder...
 };
 
 #endif
