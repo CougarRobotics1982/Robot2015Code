@@ -86,11 +86,14 @@ void AutonomousCommand::Autonomous1()
 		case 0:
 		{
 			//grab the TOTE
-			if (counter <=10)
-				RobotMap::clamppiston->Set(true);
+			if (counter <=30)
+				Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,-.2,0);
+
+			else if(counter <= 35)
+				Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,0,0);
 
 			//move the TOTE to the first level (about 7in off the ground)
-			else if(counter <= 50)
+			else if(counter <= 40)
 				(new lFirstToteLevel)->Start();
 
 			//move the robot back
