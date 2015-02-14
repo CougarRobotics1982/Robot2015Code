@@ -86,26 +86,8 @@ void AutonomousCommand::Autonomous1()
 		case 0:
 		{
 			//grab the TOTE
-			if (counter <=30)
-				Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,-.2,0);
-
-			else if(counter <= 35)
-				Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,0,0);
-
-			//move the TOTE to the first level (about 7in off the ground)
-			else if(counter <= 40)
-				(new lFirstToteLevel)->Start();
-
-			//move the robot back
-			else if(counter <=80)
-				Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,.2,0);
-
-			//stop and turn the robot counter clockwise
-			else if(counter <= 90)
-				Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,0.0,0);
-			else if(turned == false)
-				turned = Robot::driveTrain->TurnTo(90);
-
+			if(turned == false)
+				turned = Robot::driveTrain->TurnTo(60);
 			break;
 		}
 
@@ -113,15 +95,22 @@ void AutonomousCommand::Autonomous1()
 		//aka the robot's turned towards the autozone
 		case 1:
 		{
-			//move the robot forward (towards the autozone)
-			if(counter < 160 && counter > 10)
-				Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,-.3,0);
 
-			//stop and turn the robot clockwise
-			else if(counter < 170)
-				Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,0,0);
+			if (counter > 10)
+				Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,-.2,0);
+
+			if(counter <= 15)
+				RobotMap::clamppiston->Set(true);
+
+			//move the TOTE to the first level (about 7in off the ground)
+			else if(counter <= 20)
+				(new lFirstToteLevel)->Start();
+
+			//stop and turn the robot counter clockwise
+			else if(counter <= 180)
+				Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,0.0,0);
 			else if(turned == false)
-				turned = Robot::driveTrain->TurnTo(0);
+				turned = Robot::driveTrain->TurnTo(-30);
 			break;
 		}
 
