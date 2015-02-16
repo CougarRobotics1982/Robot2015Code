@@ -52,6 +52,7 @@ void Robot::DisabledInit(){
 }
 
 void Robot::DisabledPeriodic() {
+	Robot::liftR->Disable();
 	Scheduler::GetInstance()->Run();
 }
 
@@ -61,6 +62,7 @@ void Robot::AutonomousInit() {
 }
 
 void Robot::AutonomousPeriodic() {
+	printf("Angle: %f\n", Robot::driveTrain->gyro->GetAngle());
 	Scheduler::GetInstance()->Run();
 }
 

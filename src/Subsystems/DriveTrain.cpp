@@ -51,10 +51,10 @@ bool DriveTrain::TurnTo(float degrees){		  		   //Slant comments are cool
 	else if(error < -30)							 //
 		speed = -.25;
 	else if(error > 1)						 		   //makes it so motors don't break by inputing a float higher than the motors can take
-		speed = .1;						 		  //
+		speed = .2;						 		  //
 	else if(error < -1)							 //
-		speed = -.1;
-	printf("Speed %f\n", speed);				//
+		speed = -.2;
+	printf("Speed %f\n Angle %f\n", speed, gyro->GetAngle());				//
 	mecanum->MecanumDrive_Cartesian(0,0,speed);//only so the robot turns not move forward
 	if(error < 1 && error > -1)   			  //if error is within a reasonable range say basically it's close enough
 		finished = true;
@@ -77,8 +77,8 @@ bool DriveTrain::GoForward(float setFeet){		  	   //SLANT COMMENTS AGAIN
 
 void DriveTrain::MecanumDrive(Joystick* js){
 
-	float x = js->GetX() * .5;
-	float y = js->GetY() * .5;
+	float x = js->GetX() * .4;
+	float y = js->GetY() * .4;
 	float twist = js->GetZ() * .25;
 	mecanum->MecanumDrive_Cartesian(x,y,twist);
 

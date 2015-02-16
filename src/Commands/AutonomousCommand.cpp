@@ -86,26 +86,10 @@ void AutonomousCommand::Autonomous1()
 		case 0:
 		{
 			//grab the TOTE
-			if (counter <=30)
-				Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,-.2,0);
-
-			else if(counter <= 35)
-				Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,0,0);
-
-			//move the TOTE to the first level (about 7in off the ground)
-			else if(counter <= 40)
-				(new lFirstToteLevel)->Start();
-
-			//move the robot back
-			else if(counter <=80)
-				Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,.2,0);
-
-			//stop and turn the robot counter clockwise
-			else if(counter <= 90)
-				Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,0.0,0);
-			else if(turned == false)
-				turned = Robot::driveTrain->TurnTo(90);
-
+			if(turned == false)
+				turned = Robot::driveTrain->TurnTo(60);
+			if(counter > 300)
+				turned = true;
 			break;
 		}
 
@@ -113,15 +97,36 @@ void AutonomousCommand::Autonomous1()
 		//aka the robot's turned towards the autozone
 		case 1:
 		{
-			//move the robot forward (towards the autozone)
-			if(counter < 160 && counter > 10)
+
+			//move forward to grab the TOTE
+			if (counter < 20)
 				Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,-.3,0);
 
-			//stop and turn the robot clockwise
-			else if(counter < 170)
+			//stop, clamp and reset the gyro
+			else if(counter <= 25)
+			{
 				Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,0,0);
+				RobotMap::clamppiston->Set(true);
+				Robot::driveTrain->gyro->Reset();
+			}
+
+			//move the TOTE to the first level (about 7in off the ground)
+			else if(counter <= 30)
+				(new lFirstToteLevel)->Start();
+
+			//move towards the autozone
+			else if(counter < 200)
+				Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,-.3,0);
+
+			//stop and turn the robot counter clockwise
+			else if(counter <= 205)
+			{
+				Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,0.0,0);
+			}
+
+			//turn parallel to the bridge
 			else if(turned == false)
-				turned = Robot::driveTrain->TurnTo(0);
+				turned = Robot::driveTrain->TurnTo(-90);
 			break;
 		}
 
@@ -152,6 +157,6 @@ void AutonomousCommand::Autonomous1()
 		counter = 0;
 	}
 	testTime = time(NULL);
-	printf("Time : %i\n", testTime);
+	//printf("Time : %i\n", testTime);
 	counter ++;
 }

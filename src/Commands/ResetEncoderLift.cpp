@@ -26,7 +26,7 @@ void ResetEncoderLift::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ResetEncoderLift::Execute() {
-	printf("run\n");
+	printf("SWitch: %i\n",(int)Robot::liftR->homeSwitch->Get());
 	Robot::liftR->lifter->Set(-.2);
 }
 
@@ -36,7 +36,7 @@ bool ResetEncoderLift::IsFinished() {
 		if(Robot::liftR->homeSwitch->Get())
 			return false;
 		else
-			return true;
+			return true;//if home switch is pressed then got to the End() method
 }
 
 // Called once after isFinished returns true
