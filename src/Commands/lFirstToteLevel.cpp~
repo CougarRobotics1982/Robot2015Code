@@ -32,6 +32,7 @@ void lFirstToteLevel::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void lFirstToteLevel::Execute() {
+	printf("Running: %f\n", Robot::liftR->PIDGet());printf("Running: %f Speed: %f\n", Robot::liftR->PIDGet(), Robot::liftR->lifter->Get());
 }
 
 // Make this return true when this Command no longer needs to run execute()

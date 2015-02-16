@@ -22,9 +22,8 @@ private:
 	JoystickButton* pickUp;
 	JoystickButton* liftMo;
 	JoystickButton* driveEnable;
-	Joystick* levelController;
-	JoystickButton* manualLift;
 	JoystickButton* pistonExtend;
+	Joystick* levelController;
 	JoystickButton* trashcanLevelButton;
 	JoystickButton* joystickButton1;
 	JoystickButton* fourthLevel;
