@@ -724,7 +724,7 @@ Children:
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
       Setpoint: !!robotbuilder.data.properties.DoubleProperty {default: 1, name: Setpoint,
-        validators: null, value: 36.0}
+        validators: null, value: 41.0}
     Base: Setpoint Command
     Name: lThirdToteLevel
   - Children: []
@@ -738,7 +738,7 @@ Children:
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
       Setpoint: !!robotbuilder.data.properties.DoubleProperty {default: 1, name: Setpoint,
-        validators: null, value: 48.0}
+        validators: null, value: 54.0}
     Base: Setpoint Command
     Name: lFourthToteLevel
   - Children: []

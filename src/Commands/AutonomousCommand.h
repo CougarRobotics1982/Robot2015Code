@@ -34,7 +34,12 @@ public:
 	bool turned;
 	int turnedCounter;
 	int testTime;
+	Command * trashLevel;
+	Command * lowestLevel;
+	bool levelReached;
 	void Autonomous1();
+	void Autonomous2();
+	void Autonomous3();
 };
 
 #endif

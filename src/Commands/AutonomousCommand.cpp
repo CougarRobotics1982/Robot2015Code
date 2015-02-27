@@ -11,7 +11,9 @@
 
 #include "AutonomousCommand.h"
 #include "lFirstToteLevel.h"
+#include "lThirdToteLevel.h"
 #include "lPIDFloor.h"
+#include "TrashCanLevel.h"
 
 AutonomousCommand::AutonomousCommand() {
 	// Use requires() here to declare subsystem dependencies
@@ -23,6 +25,9 @@ AutonomousCommand::AutonomousCommand() {
 	turnedCounter = 0;
 	turned = false;
 	testTime = 0;
+	trashLevel = new TrashCanLevel();
+	lowestLevel = new lFirstToteLevel();
+	levelReached = false;
 }
 
 // Called just before this Command runs the first time
@@ -34,6 +39,9 @@ void AutonomousCommand::Initialize() {
 	turnedCounter = 0;
 	turned = false;
 	testTime = 0;
+	trashLevel = new TrashCanLevel();
+	lowestLevel = new lFirstToteLevel();
+	levelReached = false;
 
 
 }
@@ -107,7 +115,6 @@ void AutonomousCommand::Autonomous1()
 			{
 				Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,0,0);
 				RobotMap::clamppiston->Set(true);
-				Robot::driveTrain->gyro->Reset();
 			}
 
 			//move the TOTE to the first level (about 7in off the ground)
@@ -122,6 +129,7 @@ void AutonomousCommand::Autonomous1()
 			else if(counter <= 205)
 			{
 				Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,0.0,0);
+				Robot::driveTrain->gyro->Reset(); //Resets right before turn so gyro doesn't break.
 			}
 
 			//turn parallel to the bridge
@@ -158,5 +166,144 @@ void AutonomousCommand::Autonomous1()
 	}
 	testTime = time(NULL);
 	//printf("Time : %i\n", testTime);
+	counter ++;
+}
+void AutonomousCommand::Autonomous2()
+{
+	switch (turnedCounter)
+		{
+			//if the robot hasn't turned yet
+			//aka the beginning position
+			case 0:
+			{
+				//grab the TOTE
+				if(turned == false)
+					turned = Robot::driveTrain->TurnTo(90);
+				if(counter > 300)
+					turned = true;
+				break;
+			}
+
+			//if the robot's turned once
+			//aka the robot's turned towards the autozone
+			case 1:
+			{
+
+				//move forward to grab the TOTE
+				if (counter < 20)
+					Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,-.3,0);
+
+				//stop, clamp and reset the gyro
+				else if(counter <= 25)
+				{
+					Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,0,0);
+					RobotMap::clamppiston->Set(true);
+				}
+
+				//move the TOTE to the first level (about 7in off the ground)
+				else if(counter <= 30)
+					(new lFirstToteLevel)->Start();
+
+				//move towards the autozone
+				else if(counter < 200)
+					Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,-.3,0);
+
+				//stop and turn the robot counter clockwise
+				else if(counter <= 205)
+				{
+					Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,0.0,0);
+					Robot::driveTrain->gyro->Reset(); //Resets right before turn so gyro doesn't break.
+				}
+
+				//turn parallel to the bridge
+				else if(turned == false)
+					turned = Robot::driveTrain->TurnTo(70);
+				break;
+			}
+
+			//if the robot's turned twice
+			//aka when the robot's in the autozone
+			case 2:
+			{
+				if(counter < 80)
+				{
+					(new lPIDFloor)->Start();
+				}
+				//drop the TOTE
+				else if(counter < 110)
+					RobotMap::clamppiston->Set(false);
+
+				//back up out of the way
+				else if(counter < 125)
+					Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,0.2,0);
+				break;
+			}
+
+		}
+		//reset the counter when you turn the robot
+		if(turned == true)
+		{
+			turned = false;
+			turnedCounter ++;
+			counter = 0;
+		}
+		testTime = time(NULL);
+		//printf("Time : %i\n", testTime);
+		counter ++;
+}
+void AutonomousCommand::Autonomous3()
+{
+
+
+	switch(turnedCounter)
+	{
+		case 0:
+		{
+			if(counter < 50)
+				(new TrashCanLevel)->Start();				//Starts to raise the TrashCanLevel
+			else if(counter < 55)
+				Robot::clamp->piston->Set(true);			//Close Clamp
+			else if(levelReached == false)					//If the trashcanlevel isn't reached then start it
+			{
+				trashLevel->Start();						//Raise to TrashCanLevel and tell if is on the level yet
+				levelReached  = Robot::liftR->OnTarget();
+				counter = 0;
+			}
+			else if(turned == false || counter < 150)
+			{
+				turned = Robot::driveTrain->TurnTo(-90);	//
+				levelReached = false;
+			}
+			else
+				turned = true;
+			break;
+		}
+		case 1:
+		{
+			if(counter < 100)
+			{
+				Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,-.3,0);
+			}
+			else if(counter < 105)
+				Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,0,0);
+			else if(levelReached == false)
+			{
+				lowestLevel->Start();
+				levelReached  = Robot::liftR->OnTarget();
+				counter = 0;
+			}
+			else if(counter < 5)
+				Robot::clamp->piston->Set(false);
+			else if(counter < 100)
+				Robot::driveTrain->mecanum->MecanumDrive_Cartesian(0,.1,0);
+			break;
+		}
+		if(turned == true)
+		{
+			turned = false;
+			turnedCounter ++;
+			counter = 0;
+		}
+	}
 	counter ++;
 }
