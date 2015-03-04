@@ -21,6 +21,8 @@ SpeedController* RobotMap::driveTrainRightRear = NULL;
 RobotDrive* RobotMap::driveTrainMecanum = NULL;
 Gyro* RobotMap::driveTrainGyro = NULL;
 Encoder* RobotMap::driveTrainDistanceMeasure = NULL;
+Encoder* RobotMap::driveTrainRightEncoder = NULL;
+Encoder* RobotMap::driveTrainLeftEncoder = NULL;
 Solenoid* RobotMap::clamppiston = NULL;
 Compressor* RobotMap::clampCompressor1 = NULL;
 SpeedController* RobotMap::liftRlifter = NULL;
@@ -63,6 +65,14 @@ void RobotMap::init() {
 	lw->AddSensor("DriveTrain", "DistanceMeasure", driveTrainDistanceMeasure);
 	driveTrainDistanceMeasure->SetDistancePerPulse(1.0);
         driveTrainDistanceMeasure->SetPIDSourceParameter(Encoder::kRate);
+	driveTrainRightEncoder = new Encoder(6, 7, false, Encoder::k4X);
+	lw->AddSensor("DriveTrain", "RightEncoder", driveTrainRightEncoder);
+	driveTrainRightEncoder->SetDistancePerPulse(1.0);
+        driveTrainRightEncoder->SetPIDSourceParameter(Encoder::kDistance);
+	driveTrainLeftEncoder = new Encoder(8, 9, false, Encoder::k4X);
+	lw->AddSensor("DriveTrain", "LeftEncoder", driveTrainLeftEncoder);
+	driveTrainLeftEncoder->SetDistancePerPulse(1.0);
+        driveTrainLeftEncoder->SetPIDSourceParameter(Encoder::kDistance);
 	clamppiston = new Solenoid(0, 3);
 	lw->AddActuator("Clamp", "piston", clamppiston);
 	

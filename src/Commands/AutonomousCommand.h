@@ -40,6 +40,7 @@ public:
 	void Autonomous1();
 	void Autonomous2();
 	void Autonomous3();
+	void Autonomous4();
 };
 
 #endif

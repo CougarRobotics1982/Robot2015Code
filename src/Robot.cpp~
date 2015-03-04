@@ -77,7 +77,6 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
-
 	printf("Distance: %f angle: %f %i\n",Robot::liftR->PIDGet(), Robot::driveTrain->gyro->GetAngle(), (int)Robot::liftR->homeSwitch->Get());
 	Scheduler::GetInstance()->Run();
 

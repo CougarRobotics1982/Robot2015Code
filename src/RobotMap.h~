@@ -29,6 +29,8 @@ public:
 	static RobotDrive* driveTrainMecanum;
 	static Gyro* driveTrainGyro;
 	static Encoder* driveTrainDistanceMeasure;
+	static Encoder* driveTrainRightEncoder;
+	static Encoder* driveTrainLeftEncoder;
 	static Solenoid* clamppiston;
 	static Compressor* clampCompressor1;
 	static SpeedController* liftRlifter;
